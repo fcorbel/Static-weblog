@@ -1,0 +1,118 @@
+
+body {
+	width: 700px;
+	margin: 0;
+	margin-left: auto;
+	margin-right: auto;
+	background: white;
+	font-size: 1em;
+/*
+	border-top: 10px solid #353535;
+*/
+	padding: 0;
+	font-family: Georgia, Times, serif;
+
+}
+
+header {
+	height: 90px;
+	background-color: #353535;
+	border-bottom: 10px solid #63c32d;
+	font-family: "Futura Medium", "Century Gothic", AppleGothic, sans-serif;
+	font-size: 1.5em;
+}
+
+header>a {
+	display: block;
+	height: 90px;
+	padding-top: 15px;
+	padding-left: 30px;
+	text-decoration: none;
+	color: white;
+}
+
+header>a>h1 {
+	margin: 0;
+	font-weight: normal;
+}
+
+article {
+	padding: 40px 10px;
+	font-size: 1.3em;
+	font-family: "Lucidia Sans", sans-serif;
+}
+
+article>header {
+	border-bottom: 1px solid black;
+	height: 40px;
+	background-color: white;
+	font-size: 1em;
+}
+
+article>header>time {
+	float: left;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	color: white;
+	background-color: black;
+	border-left: 1px solid black;
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	font-size: 1em;
+}
+
+.day {
+	display: block;	
+	font-family: "Lucidia Sans", sans-serif;
+/*
+	font-family: "Futura Medium", "Century Gothic", AppleGothic, sans-serif;
+*/
+	font-size: 1.5em;
+	line-height: 25px;
+	background-color: #353535;
+}
+
+.month {
+	display: block;
+	font-size: 0.7em;
+	background-color: #353535;
+	color: #63c32d;
+	line-height: 14px;
+	border-bottom: 1px solid black;
+}
+
+article>header>h2 {
+	margin: 0;
+	line-height: 40px;
+	margin-left: 60px;
+	font-size: 2em;
+	font-family: "Lucidia Sans", sans-serif;
+	font-weight: normal;
+	color: #353535;
+}
+
+code {
+	background-color: #353535;
+	color: #dddddd;
+	border-left: 10px solid #db2424;
+	margin: 20px 60px;
+	padding: 10px;
+	display: block;
+}
+
+footer {
+	height: 90px;
+	background-color: #353535;
+	border-top: 10px solid #63c32d;
+	padding: 20px;
+	color: black;
+}
+
+footer>a {
+	float: right;
+	text-decoration: none;
+	color: black;
+}
+
+

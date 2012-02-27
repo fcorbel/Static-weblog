@@ -1,0 +1,11 @@
+<!-- This is the html that will be copied to create an article -->
+<!-- The name of this file will be the title of this article -->
+
+<p>
+	This is my first article made with Plouc!.
+</p>
+
+<p>
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim eleifend erat et tempus. Proin nunc est, porta at sollicitudin et, ultricies et leo. Ut mollis pretium arcu eu laoreet. Donec vestibulum lectus ac libero pretium dignissim. Vivamus vitae augue tellus. Sed justo ipsum, rhoncus ac eleifend a, dignissim vitae orci. Vivamus enim lorem, faucibus quis imperdiet sit amet, auctor vel urna. Morbi adipiscing, mauris a tincidunt sollicitudin, nisl turpis vulputate risus, in dignissim dui dui semper urna. Sed ultrices, sem eget porttitor fermentum, nisi justo venenatis orci, sit amet dictum dolor velit a lacus. Mauris tincidunt sollicitudin libero laoreet pretium. Aenean eros eros, bibendum in semper a, egestas et quam. Nam nibh leo, pretium sit amet egestas et, mattis in quam. Morbi non tellus et dui ultrices dictum sed vel mauris. Vivamus sit amet mi tortor, ac vulputate felis. Integer bibendum vulputate imperdiet.
+
+</p>
