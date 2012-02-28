@@ -101,6 +101,51 @@ code {
 	display: block;
 }
 
+article h3:before {
+	content: "\25a0 \ "; /*show a square*/
+	color: #63c32d;
+}
+
+.references {
+	background-color: #dddddd;
+	padding: 0;
+	padding-bottom: 10px;
+	border: 1px solid #63c32d;
+}
+
+.references:before {
+	content: "Références";
+	background-color: #63c32d;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	margin-left: 20px;
+}
+
+.references li {
+	list-style-type: none;
+	margin: 6px 50px; 
+}
+
+.references li:first-child {
+	padding-top: 30px;
+}
+
+.references li:before {
+	content: "\20d7 \ "; /*an arrow to the right*/
+	color: #db2424;
+}
+.references li a {
+	text-decoration: none;
+	color: #353535;
+}
+
+.references li:hover a {
+	text-decoration: underline;
+	color: black;
+}
+
 footer {
 	height: 90px;
 	background-color: #353535;

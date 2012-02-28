@@ -67,7 +67,7 @@ header>a>h1 {
 /*
 	background-color: #bcbcbc;
 */
-	font-size: 2.5em;
+	font-size: 2em;
 	height: 60px;
 	margin-bottom: 80px;
 	border: 1px solid #353535;
@@ -76,11 +76,15 @@ header>a>h1 {
 }
 
 .articles_list li:first-child>time {
-	font-size: 0.5em;
+	font-size: 0.8em;
 }
 
 .articles_list li:first-child>a {
 	height: 60px;
+}
+
+.articles_list li:first-child>a h2 {
+	line-height: 60px;
 }
 
 .articles_list li:hover {
@@ -104,6 +108,9 @@ header>a>h1 {
 	font-family: "Lucidia Sans", sans-serif;
 	font-weight: normal;
 	font-size: 2em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .articles_list li time {
