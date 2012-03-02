@@ -44,6 +44,10 @@ class Plouc
 				createWebsite
 			}
 			
+			opts.on("-u", "--update", "Update the website in the WWW directory") {
+				updateWebsite
+			}
+			
 			opts.separator ""
 			opts.separator "Common options:"
 			
@@ -118,25 +122,13 @@ class Plouc
 		}
 	end
 	
-	def createArticle( filename , all)
-		if (!File.file?("Articles/#{filename}")) 
-			abort("Article file not found: #{filename}")
-		end
+	def createArticle( filename )
 		new_filename = filename.chomp(".txt") + ".html"
-		if (!all)
-			if (File.file?("WWW/Articles/#{new_filename}"))
-				if (File.mtime("WWW/Articles/#{new_filename}") > File.mtime("Articles/#{filename}"))
-					puts "Skip creation of article: #{filename}"
-					return
-				end
-			end
-		end
-	
+
 		if (!File.file?("#{@config[:article]}")) 
 			abort("Article template file not found: #{@config[:article]}")
 		end
 		puts "Create article: #{filename}"
-		FileUtils.cp(@config[:article_CSS], "WWW/CSS")
 		template = File.read(@config[:article])
 		#copy article in template
 		article = File.read("Articles/#{filename}")				
@@ -152,13 +144,19 @@ class Plouc
 	end
 	
 	def processIndexTags( string_to_process )
+		#Designing the articles list
+		html_code = createArticlesIndex
+		
+		string_to_process = string_to_process.gsub(/<\$articles_list\$>/, html_code)
+		string_to_process = string_to_process.gsub(/<\$path_to_index\$>/, "index.html")
+		string_to_process = string_to_process.gsub(/<\$index_CSS\$>/, "<link rel=\"stylesheet\" media=\"all\" href=\"CSS/#{File.basename(@config[:index_CSS])}\" type=\"text/css\" />")
+	end
+	
+	def createArticlesIndex
+		#generate the html for an articles index list
 		articles_files_list = Dir.glob("Articles/*.txt")
 		articles_files_list = articles_files_list.sort_by {|filename| File.mtime(filename) }
 		articles_files_list = articles_files_list.reverse
-		articles_files_list.each {|filename|
-			puts "#{filename}: #{File.mtime(filename)}"
-		}
-		#Designing the articles list
 		html_code = "<ol class=\"articles_list\">\n"
 		articles_files_list.each {|article|
 			name = File.basename(article, ".txt")
@@ -166,11 +164,7 @@ class Plouc
 			date = File.mtime(article).strftime("%e %B %Y")
 			html_code += "<li><a href=\"#{path}\"><h2>#{name}</h2></a><time>#{date}</time></li>\n"
 		}
-		html_code += "</ol>\n"
-		string_to_process = string_to_process.gsub(/<\$articles_list\$>/, html_code)
-		string_to_process = string_to_process.gsub(/<\$path_to_index\$>/, "index.html")
-		string_to_process = string_to_process.gsub(/<\$index_CSS\$>/, "<link rel=\"stylesheet\" media=\"all\" href=\"CSS/#{File.basename(@config[:index_CSS])}\" type=\"text/css\" />")
-	
+		html_code += "</ol>\n"	
 	end
 	
 	def processArticleTags( string_to_process, article_filename )
@@ -181,6 +175,11 @@ class Plouc
 		string_to_process = string_to_process.gsub(/<\$day\$>/, time.day.to_s)
 		string_to_process = string_to_process.gsub(/<\$month\$>/, time.strftime("%b"))		
 		string_to_process = string_to_process.gsub(/<\$path_to_index\$>/, "../index.html")
+	end
+	
+	def createArticleIndex
+		#generate an index for all the h3 tags in the article, cause it's a pain to do it by hand
+		#TODO
 	end
 	
 	def processGlobalTags( string_to_process )
@@ -204,20 +203,42 @@ class Plouc
 	
 	def createWebsite
 		#create every article page
-		
 		Dir.open("Articles").each {|filename|
 			if filename!=".." && filename!="."
-				createArticle( filename, true )
+				createArticle( filename )
 			end
 		}
-		
+		FileUtils.cp(@config[:article_CSS], "WWW/CSS")
 		#create the index page
 		createIndex
 		
 	end
 	
 	def updateWebsite
-	
+		#update the website with files that have been modified since last update
+		updated = false
+		Dir.open("Articles").each {|filename|
+			new_filename = filename.chomp(".txt") + ".html"
+			if filename!=".." && filename!="."
+				#check if it's a new article
+				if (!File.file?("WWW/Articles/#{new_filename}"))
+					createArticle( filename )
+					updated = true
+				else
+					#check if the article source was modified
+					if (File.mtime("WWW/Articles/#{new_filename}") < File.mtime("Articles/#{filename}"))
+						createArticle( filename )
+						updated = true
+					end
+				end		
+			end
+		}
+		if (updated)
+			createIndex
+		else
+			puts "Website already up to date."
+		end
+		FileUtils.cp(@config[:article_CSS], "WWW/CSS")
 	end
 	
 	def setupWebsite
