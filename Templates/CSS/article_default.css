@@ -65,9 +65,6 @@ article>header>time {
 .day {
 	display: block;	
 	font-family: "Lucidia Sans", sans-serif;
-/*
-	font-family: "Futura Medium", "Century Gothic", AppleGothic, sans-serif;
-*/
 	font-size: 1.5em;
 	line-height: 25px;
 	background-color: #353535;
@@ -90,6 +87,27 @@ article>header>h2 {
 	font-family: "Lucidia Sans", sans-serif;
 	font-weight: normal;
 	color: #353535;
+}
+
+article .index {
+	background-color: #dddddd;
+	padding: 10px;
+	margin: 0 40px;
+	border: 1px solid #63c32d;
+}
+
+article .index {
+	list-style-type: none;
+}
+
+article .index li a {
+	text-decoration: none;
+	color: #353535;
+}
+
+article .index li:hover a {
+	text-decoration: underline;
+	color: black;
 }
 
 code {
