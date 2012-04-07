@@ -1,0 +1,29 @@
+<p>
+Plouc is a ruby script that helps you manage a static website.
+It tries to stay simple and easy to use.
+</p>
+
+<h3>Markup specific to Plouc</h3>
+Markups for Plouc are like <$Plouc_markup$>
+This is a list of the markups used in plouc (without the whitespace):
+<h4>To use only in index templates:</h4>
+<code>
+	<$ articles_list $> : Generate a list of articles with the most recent on top <br />
+</code>
+<h4>To use only in articles:</h4>
+<code>
+	<$ article_title $> : Insert the title of the current article <br />
+	<$ date $> : Insert the date of last modification of the article, format is YYYY-MM-DD <br />
+	<$ day $> : Insert the day of last modification of the article <br />
+	<$ month $> : Insert the month of last modification of the article
+</code>
+<h4>To use in either files:</h4>
+<code>
+	<$ index_CSS $> : include the proper index CSS in the index template
+	<$ article_CSS $> : include the proper article CSS in the template
+	<$ path_to_index $> : A link to the index file of the website <br />
+	<$ header $> : Insert header template <br />
+	<$ footer $> : Insert footer template <br />
+	<$ charset $> : Insert charset to use in html files <br />
+	<$ website_name $> : Insert the website's name from the configuration
+</code>
