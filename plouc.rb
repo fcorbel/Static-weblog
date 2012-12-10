@@ -149,7 +149,6 @@ class Plouc
 		
 		string_to_process = string_to_process.gsub(/<\$articles_list\$>/, html_code)
 		string_to_process = string_to_process.gsub(/<\$path_to_index\$>/, "index.html")
-		string_to_process = string_to_process.gsub(/<\$index_CSS\$>/, "<link rel=\"stylesheet\" media=\"all\" href=\"CSS/#{File.basename(@config[:index_CSS])}\" type=\"text/css\" />")
 	end
 	
 	def createArticlesIndex
@@ -170,7 +169,6 @@ class Plouc
 	def processArticleTags( string_to_process, article_filename )
 		string_to_process = string_to_process.gsub(/<\$article_title\$>/, article_filename.chomp(".txt"))
 		time = File.mtime("Articles/" + article_filename)
-		#~ time = Time.now #TODO get date from the file info
 		string_to_process = string_to_process.gsub(/<\$date\$>/, time.strftime("%Y-%m-%d"))
 		string_to_process = string_to_process.gsub(/<\$day\$>/, time.day.to_s)
 		string_to_process = string_to_process.gsub(/<\$month\$>/, time.strftime("%b"))		
@@ -186,8 +184,8 @@ class Plouc
 		if (!File.file?("#{@config[:header]}")) 
 			abort("Header template file not found: #{@config[:header]}")
 		end
-		footer = File.read(@config[:header])
-		string_to_process = string_to_process.gsub(/<\$header\$>/, footer)
+		header = File.read(@config[:header])
+		string_to_process = string_to_process.gsub(/<\$header\$>/, header)
 
 		if (!File.file?("#{@config[:footer]}")) 
 			abort("Footer template file not found: #{@config[:footer]}")
@@ -197,6 +195,7 @@ class Plouc
 		
 		string_to_process = string_to_process.gsub(/<\$charset\$>/, @config[:encoding])
 		string_to_process = string_to_process.gsub(/<\$article_CSS\$>/, "<link rel=\"stylesheet\" media=\"all\" href=\"../CSS/#{File.basename(@config[:article_CSS])}\" type=\"text/css\" />")
+		string_to_process = string_to_process.gsub(/<\$index_CSS\$>/, "<link rel=\"stylesheet\" media=\"all\" href=\"CSS/#{File.basename(@config[:index_CSS])}\" type=\"text/css\" />")
 		string_to_process = string_to_process.gsub(/<\$website_name\$>/, @config[:website_name])
 
 	end
